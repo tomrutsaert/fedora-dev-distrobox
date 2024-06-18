@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        base_name: [fedora-dev-distrobox]
+        base_name: [fedora-dev-toolbox]
         include:
           - is_latest_version: true
             is_stable_version: true
