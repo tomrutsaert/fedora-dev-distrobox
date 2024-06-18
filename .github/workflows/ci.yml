@@ -1,0 +1,19 @@
+#publish your docker image to github container registry
+name: Create and publish a Docker image
+on: push
+jobs:
+  publish-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build the Fedora dev distrobox image
+        run: |
+          docker build . --tag ghcr.io/tomrutsaert/fedora-dev-distrobox:latest
+          docker run ghcr.io/tomrutsaert/fedora-dev-distrobox:latest
+          docker push ghcr.io/tomrutsaert/fedora-dev-distrobox:latest
