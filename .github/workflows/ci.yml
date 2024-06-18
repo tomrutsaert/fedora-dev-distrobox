@@ -2,8 +2,13 @@
 name: Create and publish a Docker image
 on:
   schedule:
-    - cron: '30 18 1 * *'  # 8:30pm firstday
-  push
+    - cron: '30 20 1 * *'  # 8:30pm firstday
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
 
 jobs:
   push-ghcr:
