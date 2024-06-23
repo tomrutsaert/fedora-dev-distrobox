@@ -21,3 +21,4 @@ distrobox-create --image ghcr.io/tomrutsaert/fedora-dev-toolbox:latest \
 
 execute following command `dev-box-init` to init the dev box
 This will install starship, sdkman, maven, nvm, awscli , intellij
+after the script has ran execute `source $HOME/.bashrc` or relogin 
