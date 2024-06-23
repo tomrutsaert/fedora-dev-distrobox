@@ -74,4 +74,28 @@ npm --version
 npm config set '//gitlab.com/api/v4/packages/npm/:_authToken' "${GITLAB_NPM_ACCESS_TOKEN}"
 
 #intellij
+mkdir -p /tmp/idea && cd /tmp/idea
+curl -sSfL -o releases.json "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release"
+BUILD_VERSION=$(jq -r '.IIU[0].build' ./releases.json)
+DOWNLOAD_LINK=$(jq -r '.IIU[0].downloads.linux.link' ./releases.json)
+CHECKSUM_LINK=$(jq -r '.IIU[0].downloads.linux.checksumLink' ./releases.json)
+echo "Installing Intellij ${BUILD_VERSION}"
+curl -sSfL -O "${DOWNLOAD_LINK}"
+curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c
+sudo tar -xzf ideaIU-*.tar.gz -C /opt
+cd $HOME
+mkdir -p .local/share/applications
+cat << EOF > .local/share/applications/jetbrains-idea.desktop
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Ultimate Edition
+Icon=/opt/idea-IU-${BUILD_VERSION}/bin/idea.svg
+Exec="/opt/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
+Comment=Capable and Ergonomic IDE for JVM
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+StartupNotify=true
+EOF
 distrobox-export --app idea
