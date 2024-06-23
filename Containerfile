@@ -12,7 +12,7 @@ RUN dnf -y update && \
 RUN mkdir -p /tmp/aws && \
     cd /tmp/aws && \
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
+    unzip -qq awscliv2.zip && \
     ./aws/install && \
     aws --version
 
@@ -25,14 +25,14 @@ RUN mkdir -p /tmp/idea && cd /tmp/idea && \
     echo "Installing Intellij ${BUILD_VERSION}" && \
     curl -sSfL -O "${DOWNLOAD_LINK}" && \
     curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
-    tar -xzf ideaIU-*.tar.gz -C /opt && \
+    tar -xzf ideaIU-*.tar.gz -C /usr/local && \
     cat << EOF > /usr/share/applications/jetbrains-idea.desktop
     [Desktop Entry]
     Version=1.0
     Type=Application
     Name=IntelliJ IDEA Ultimate Edition
-    Icon=/opt/idea-IU-${BUILD_VERSION}/bin/idea.svg
-    Exec="/opt/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
+    Icon=/usr/local/idea-IU-${BUILD_VERSION}/bin/idea.svg
+    Exec="/usr/local/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
     Comment=Capable and Ergonomic IDE for JVM
     Categories=Development;IDE;
     Terminal=false
