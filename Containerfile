@@ -25,7 +25,7 @@ RUN mkdir -p /tmp/idea && cd /tmp/idea && \
     echo "Installing Intellij ${BUILD_VERSION}" && \
     curl -sSfL -O "${DOWNLOAD_LINK}" && \
     curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
-    sudo tar -xzf ideaIU-*.tar.gz -C /opt && \
+    tar -xzf ideaIU-*.tar.gz -C /opt && \
     cat << EOF > /usr/share/applications/jetbrains-idea.desktop
     [Desktop Entry]
     Version=1.0
