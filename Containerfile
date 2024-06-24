@@ -26,7 +26,7 @@ RUN mkdir -p /tmp/idea && cd /tmp/idea && \
     curl -sSfL -O "${DOWNLOAD_LINK}" && \
     curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
     echo "start untar" && \
-    tar -xzf ideaIU-*.tar.gz && \
+    tar -xzf ideaIU-*.tar.gz --no-same-owner && \
     ls -al && \
     echo "starting move" && \
     mv -v /tmp/idea/idea-IU-${BUILD_VERSION} /opt/idea-IU-${BUILD_VERSION} && \
