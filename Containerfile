@@ -16,5 +16,30 @@ RUN mkdir -p /tmp/aws && \
     ./aws/install && \
     aws --version
 
+#jetbrains-idea
+RUN mkdir -p /tmp/idea && cd /tmp/idea && \
+    curl -sSfL -o releases.json "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release" && \
+    BUILD_VERSION=$(jq -r '.IIU[0].build' ./releases.json) && \
+    DOWNLOAD_LINK=$(jq -r '.IIU[0].downloads.linux.link' ./releases.json) && \
+    CHECKSUM_LINK=$(jq -r '.IIU[0].downloads.linux.checksumLink' ./releases.json) && \
+    echo "Installing Intellij ${BUILD_VERSION}" && \
+    curl -sSfL -O "${DOWNLOAD_LINK}" && \
+    curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
+    tar -xzf ideaIU-*.tar.gz -C . && \
+    mv /tmp/idea/idea-IU-${BUILD_VERSION} /opt/idea-IU-${BUILD_VERSION} && \
+    cat << EOF > /usr/share/applications/jetbrains-idea.desktop
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Ultimate Edition
+Icon=/opt/idea-IU-${BUILD_VERSION}/bin/idea.svg
+Exec="/opt/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
+Comment=Capable and Ergonomic IDE for JVM
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+StartupNotify=true
+EOF
+
 # Cleanup
 RUN rm -rf /tmp/*
