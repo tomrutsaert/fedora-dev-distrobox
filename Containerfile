@@ -27,7 +27,7 @@ RUN mkdir -p /tmp/idea && cd /tmp/idea && \
     curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
     ls -al . && \
     chmod 777 ideaIU-*.tar.gz && \
-    tar -xzf ideaIU-*.tar.gz -C . --owner=0 --group=0 --no-same-owner --no-same-permissions && \
+    tar -xzf ideaIU-*.tar.gz -C . --verbose --verbose --owner=0 --group=0 --no-same-owner --no-same-permissions && \
     mv /tmp/idea/idea-IU-${BUILD_VERSION} /opt/idea-IU-${BUILD_VERSION} && \
     cat << EOF > /usr/share/applications/jetbrains-idea.desktop
 [Desktop Entry]
