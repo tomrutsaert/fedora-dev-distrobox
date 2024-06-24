@@ -81,17 +81,16 @@ CHECKSUM_LINK=$(jq -r '.IIU[0].downloads.linux.checksumLink' ./releases.json)
 echo "Installing Intellij ${BUILD_VERSION}"
 curl -sSfL -O "${DOWNLOAD_LINK}"
 curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c
-mkdir -p ~/applications
-sudo tar -xzf ideaIU-*.tar.gz -C ~/applications
-cd $HOME
-mkdir -p .local/share/applications
-cat << EOF > .local/share/applications/jetbrains-idea.desktop
+mkdir -p $HOME/applications
+tar -xzf ideaIU-*.tar.gz -C $HOME/applications
+mkdir -p $HOME/.local/share/applications
+cat << EOF > $HOME/.local/share/applications/jetbrains-idea.desktop
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=IntelliJ IDEA Ultimate Edition
-Icon=~/applications/idea-IU-${BUILD_VERSION}/bin/idea.svg
-Exec="~/applications/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
+Icon=$HOME/applications/idea-IU-${BUILD_VERSION}/bin/idea.svg
+Exec="$HOME/applications/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
 Comment=Capable and Ergonomic IDE for JVM
 Categories=Development;IDE;
 Terminal=false
