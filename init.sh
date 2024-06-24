@@ -61,7 +61,6 @@ cat << EOF > $HOME/.m2/settings.xml
   </profiles>
 </settings>
 EOF
-
 sdk install maven
 
 #nvm
@@ -82,7 +81,8 @@ CHECKSUM_LINK=$(jq -r '.IIU[0].downloads.linux.checksumLink' ./releases.json)
 echo "Installing Intellij ${BUILD_VERSION}"
 curl -sSfL -O "${DOWNLOAD_LINK}"
 curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c
-sudo tar -xzf ideaIU-*.tar.gz -C /opt
+mkdir -p ~/applications
+sudo tar -xzf ideaIU-*.tar.gz -C ~/applications
 cd $HOME
 mkdir -p .local/share/applications
 cat << EOF > .local/share/applications/jetbrains-idea.desktop
@@ -90,8 +90,8 @@ cat << EOF > .local/share/applications/jetbrains-idea.desktop
 Version=1.0
 Type=Application
 Name=IntelliJ IDEA Ultimate Edition
-Icon=/opt/idea-IU-${BUILD_VERSION}/bin/idea.svg
-Exec="/opt/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
+Icon=~/applications/idea-IU-${BUILD_VERSION}/bin/idea.svg
+Exec="~/applications/idea-IU-${BUILD_VERSION}/bin/idea.sh" %f
 Comment=Capable and Ergonomic IDE for JVM
 Categories=Development;IDE;
 Terminal=false
