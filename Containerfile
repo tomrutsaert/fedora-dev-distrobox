@@ -25,6 +25,10 @@ RUN mkdir -p /tmp/idea && cd /tmp/idea && \
     echo "Installing Intellij ${BUILD_VERSION}" && \
     curl -sSfL -O "${DOWNLOAD_LINK}" && \
     curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
+    ls -al && \
+    chown root:root ./ideaIU-*.tar.gz && \
+    chmod 777 ./ideaIU-*.tar.gz && \
+    ls -al && \
     echo "start untar" && \
     tar -xzf ideaIU-*.tar.gz --no-same-owner && \
     ls -al && \
