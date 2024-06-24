@@ -25,9 +25,7 @@ RUN mkdir -p /tmp/idea && cd /tmp/idea && \
     echo "Installing Intellij ${BUILD_VERSION}" && \
     curl -sSfL -O "${DOWNLOAD_LINK}" && \
     curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
-    ls -al . && \
-    chmod 777 ideaIU-*.tar.gz && \
-    tar -xzf ideaIU-*.tar.gz -C . --verbose --verbose --owner=0 --group=0 --no-same-owner --no-same-permissions && \
+    tar -xzf ideaIU-*.tar.gz && \
     mv /tmp/idea/idea-IU-${BUILD_VERSION} /opt/idea-IU-${BUILD_VERSION} && \
     cat << EOF > /usr/share/applications/jetbrains-idea.desktop
 [Desktop Entry]
