@@ -26,11 +26,11 @@ RUN mkdir -p /tmp/idea && cd /tmp/idea && \
     curl -sSfL -O "${DOWNLOAD_LINK}" && \
     curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c && \
     ls -al && \
-    chown root:root ./ideaIU-*.tar.gz && \
-    chmod 777 ./ideaIU-*.tar.gz && \
+    sudo chown root:root ./ideaIU-*.tar.gz && \
+    sudo chmod 777 ./ideaIU-*.tar.gz && \
     ls -al && \
     echo "start untar" && \
-    tar -xzf ideaIU-*.tar.gz --no-same-owner && \
+    sudo tar -xzf ideaIU-*.tar.gz --no-same-owner && \
     ls -al && \
     echo "starting move" && \
     mv -v /tmp/idea/idea-IU-${BUILD_VERSION} /opt/idea-IU-${BUILD_VERSION} && \
