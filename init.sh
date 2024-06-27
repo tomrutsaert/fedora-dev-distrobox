@@ -11,12 +11,12 @@ git config --global push.autoSetupRemote true
 sudo rm -rf $HOME/.cache
 
 #starship
-mkdir -p /tmp/starship && cd /tmp/starship
-curl -O https://starship.rs/install.sh
-chmod +x install.sh
-./install.sh -y
-echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
-source $HOME/.bashrc
+# mkdir -p /tmp/starship && cd /tmp/starship
+# curl -O https://starship.rs/install.sh
+# chmod +x install.sh
+# ./install.sh -y
+# echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
+# source $HOME/.bashrc
 
 #sdkman
 mkdir -p /tmp/sdkman
