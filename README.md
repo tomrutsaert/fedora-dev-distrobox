@@ -1,5 +1,8 @@
 # fedora-dev-distrobox
 
+Personal development distrobox container with awscli, git, starship installed.
+Has script to init the dev env and to isntall intellij in the container and distrobox expose it
+
 ## Creating the container
 
 ```
@@ -19,6 +22,6 @@ distrobox-create --image ghcr.io/tomrutsaert/fedora-dev-toolbox:latest \
 --yes
 ```
 
-execute following command `dev-box-init` to init the dev box
-This will install starship, sdkman, maven, nvm, awscli , intellij
-after the script has ran execute `source $HOME/.bashrc` or relogin 
+execute following command `install-dev-env` to install the dev environment, (git config, sdkman, nvm, mvn, ...)
+execute following command `install-intellij` to install intellij
+after the scripts have ran, It could be necessary to execute `source $HOME/.bashrc` or to relogin
