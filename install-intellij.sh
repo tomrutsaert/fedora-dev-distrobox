@@ -1,15 +1,5 @@
 #!/bin/bash
 
-cd $HOME
-
-#git
-git config --global user.name "${GIT_NAME}"
-git config --global user.email "${GIT_EMAIL}"
-git config --global push.autoSetupRemote true
-
-#prep
-sudo rm -rf $HOME/.cache
-
 #intellij
 mkdir -p /tmp/idea && cd /tmp/idea
 curl -sSfL -o releases.json "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release"
