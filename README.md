@@ -1,7 +1,7 @@
 # fedora-dev-distrobox
 
 Personal development distrobox container with awscli, git, starship installed.
-Has script to init the dev env and to isntall intellij in the container and distrobox expose it
+Has script to init the dev env and to isntall intellij in the container and distrobox expose it.
 
 ## Creating the container
 
